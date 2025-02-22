@@ -16,6 +16,90 @@
 <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
 <meta property="og:image" content="https://i.ibb.co/mtmcHHq/a-modern-and-sleek-logo-for-ayushmediave-0-CJb-H7z-ARb-t-XFg-SF-SQ-r5-Vc-Gq-LLRPez-O0n5-N9-n-Yw.jpg" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    .slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 20px;
+}
+
+/* Slider Box */
+.slider {
+    width: 100%;
+max-width: 400px; /* Adjusts size for responsiveness */
+aspect-ratio: 1 / 1;
+height: auto;
+    outline: 1px solid #ffb200;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px; /* Smooth edges */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Slides */
+.slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Active Slide */
+.slide.active {
+    opacity: 1;
+}
+
+.slider-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin-top: 20px;
+}
+
+/* Slider Box */
+.slider1 {
+    width: 350px;  /* 3:4 Aspect Ratio */
+    height: 196px;
+    outline: 1px solid #ffb200;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10px; /* Smooth edges */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Slides */
+.slide1 {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slide1 img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Active Slide */
+.slide1.active {
+    opacity: 1;
+}
+</style>
 </head>
 
 <body>
@@ -66,14 +150,20 @@
           <a href="#walterwhite" class="anchor-btn">Get Started Today<i class="fas fa-arrow-right pd-lt-10"></i></a> </div>
       </div>
       <div class="col-md-6 mb-50">
-        <div class="section-img"> <img src="images/about.jpg" alt="" class="img-responsive"/> </div>
+       <div class="slider-container">
+    <div class="slider">
+        <div class="slide"><img src="https://i.ibb.co/20D99YNb/20250222-203544.jpg" alt="Image 1"></div>
+        <div class="slide"><img src="https://i.ibb.co/hQVcSN5/20250222-211315.jpg" alt="Image 2"></div>
+        <div class="slide"><img src="https://i.ibb.co/9HpvYYPZ/20250222-210840.jpg"         alt="Image 3"></div>
+    </div>
+</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- End About --> 
-
+<br><br>
 <!-- Services -->
 <div class="services section-padding bg-grey" data-scroll-index='2'>
   <div class="container">
@@ -370,6 +460,31 @@ $( ".cover-bg" ).each(function() {
 
 });
 
+
+document.querySelectorAll(".slider, .slider1").forEach((slider) => {
+    let slides = slider.querySelectorAll(".slide, .slide1");
+    let index = 0;
+
+    function showSlide() {
+        slides.forEach((slide) => slide.classList.remove("active"));
+        slides[index].classList.add("active");
+        index = (index + 1) % slides.length;
+    }
+
+    setInterval(showSlide, 3000);
+    showSlide();
+});
+const hiddenElements = document.querySelectorAll('.features-heading, .features-container, .segment, .fitness-heading, .hellohe, .slider-container, .slider-container1, .cta-section, footer');
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+        }
+    });
+}, { threshold: 0.3 });
+
+hiddenElements.forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
